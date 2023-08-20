@@ -1,17 +1,21 @@
 version: '3.8'
 services:
-  db:
+  mongo:
+    container_name: mongo
     image: mongo:latest
     restart: always
     ports:
       - '27077:27017'
-  backend:
+  node:
+    container_name: backend
     build: 
-      context: '../../ecommerce-backend-ts'
+      context: '../../idev-backend'
       dockerfile: Dockerfile
     restart: unless-stopped
     environment:
-      - DEV_DB_HOST=localhost
+      - DEV_DB_HOST=host.docker.internal
       - DEV_DB_PORT=27077
     ports: 
       - 3066:3066
+    links:
+      - mongo
