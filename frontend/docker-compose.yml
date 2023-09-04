@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  idev:
+    container_name: frontend
+    build:
+      context: ../../idev-frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
